@@ -61,6 +61,13 @@ stage('Build image') {
     node {
         def app
         /* Build the docker image */
-        app = docker.build("simple-java-maven-app:$BUILD_NUMBER")
+        app = docker.build("spring-boot-hello:latest")
+    }
+}
+
+stage('Deploy to k8s') {
+    node {
+        /* Apply all manifest files */
+        sh "kubectl apply -f ./deployment/"
     }
 }

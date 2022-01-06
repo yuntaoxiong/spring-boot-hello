@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+        - name: app
+          image: spring-boot-hello:latest 
+          ports:
+            - containerPort: 9000
+          imagePullPolicy: IfNotPresent
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  selector:
+    app: hello
+  type: NodePort
+  ports:
+  - name: port-hello
+    port: 80
+    protocol: TCP
+    targetPort: 9000
+    nodePort: 32000
+#  ports:
+#    - port: 80
+#      targetPort: 8080
+#  type: LoadBalancer
+  
