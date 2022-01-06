@@ -1,0 +1,7 @@
+/build
+/target
+/.mvn
+/gradle
+.gradle/
+.jdk8
+.DS_Store
