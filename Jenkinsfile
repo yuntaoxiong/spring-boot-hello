@@ -61,7 +61,8 @@ stage('Build image') {
     node {
         def app
         /* Build the docker image */
-        app = docker.build("spring-boot-hello:latest", "--no-cache")
+        // app = docker.build("spring-boot-hello:latest", "--no-cache")
+        sh "docker build --no-cache -t spring-boot-hello:latest ."
     }
 }
 
