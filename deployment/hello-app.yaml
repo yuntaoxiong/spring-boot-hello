@@ -17,7 +17,7 @@ spec:
         - name: app
           image: spring-boot-hello:latest 
           ports:
-            - containerPort: 9000
+            - containerPort: 8090
           imagePullPolicy: IfNotPresent
 
 ---
@@ -33,7 +33,7 @@ spec:
   - name: port-hello
     port: 80
     protocol: TCP
-    targetPort: 9000
+    targetPort: 8090
     nodePort: 32000
 #  ports:
 #    - port: 80
