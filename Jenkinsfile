@@ -59,10 +59,14 @@ pipeline {
 
 stage('Build image') {
     node {
-        def app
+        withEnv([
+            'SERVICE=hello',
+            'TAG=latest'
+        ]){
         /* Build the docker image */
         // app = docker.build("spring-boot-hello:latest", "--no-cache")
-        sh "docker build --no-cache -t spring-boot-hello:latest ."
+            sh "docker build --no-cache -t ${SERVICE}:${TAG} ."
+        }
     }
 }
 
