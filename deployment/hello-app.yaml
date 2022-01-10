@@ -2,20 +2,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello
+  name:  {{service}}
+  namespace: {{namespace}}
+  labels:
+    redeploy: {{version}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello
+      app:  {{service}}
   template:
     metadata:
       labels:
-        app: hello
+        app:  {{service}}
     spec:
       containers:
         - name: app
-          image: spring-boot-hello:latest 
+          image:  {{image}}
           ports:
             - containerPort: 8090
           imagePullPolicy: IfNotPresent
@@ -24,13 +27,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello
+  name:  {{service}}
+  namespace: {{namespace}}
 spec:
   selector:
-    app: hello
+    app:  {{service}}
   type: NodePort
   ports:
-  - name: port-hello
+  - name: port-out
     port: 80
     protocol: TCP
     targetPort: 8090

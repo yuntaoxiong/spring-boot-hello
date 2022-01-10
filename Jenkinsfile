@@ -68,9 +68,14 @@ stage('Build image') {
 
 stage('Deploy to k8s') {
     node {
-        /* Apply all manifest files */
-        sh "pwd"
-        sh "cat /root/.kube/ca.crt"
-        sh "kubectl apply -f ./deployment/"
-    }
+        withEnv([
+            'SERVICE=hello',
+            'NAMESPACE=default'
+        ]){
+            /* Apply all manifest files */
+            sh "pwd"
+            sh "cat /root/.kube/ca.crt"
+            sh './deployment/deploy.sh'
+        }
+    }    
 }
