@@ -75,7 +75,7 @@ stage('Deploy to k8s') {
             /* Apply all manifest files */
             sh "pwd"
             sh "cat /root/.kube/ca.crt"
-            sh './deployment/deploy.sh'
+            sh "./deployment/deploy.sh"
         }
     }    
 }
