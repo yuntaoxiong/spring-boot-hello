@@ -6,13 +6,19 @@ spring:
   application:
     name: testLatticeApp
 
-ribbon:
-  ServerListRefreshInterval: 1000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 
-endpoints:
-  health:
-    sensitive: false
-  restart:
-    enabled: true
-  shutdown:
-    enabled: true
+#endpoints:
+#  health:
+#    sensitive: false
+#  restart:
+#    enabled: true
+#  shutdown:
+#    enabled: true
