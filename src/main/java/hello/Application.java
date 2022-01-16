@@ -13,12 +13,12 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "Hello k8s new digital world!";
+        return "Hello this is Yuntao Project messages!";
     }
 
-    @RequestMapping("/test")
-    public String test() {
-        return "test new API";
+    @RequestMapping("/good")
+    public String good() {
+        return "Change to new API good";
     }
 
     @RequestMapping("/name/{name}")
